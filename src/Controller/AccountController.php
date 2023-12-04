@@ -67,7 +67,7 @@ class AccountController extends AbstractController
                 'id' => $transaction->getId(),
                 'type' => $isDeposit ? 'deposit' : 'withdrawal',
                 'status' => $transaction->getStatus(),
-                $isDeposit ? 'account_from' : 'account_to' => $this->getAccountNameAndId($transferAccount),
+                $isDepoasit ? 'account_from' : 'account_to' => $this->getAccountNameAndId($transferAccount),
                 'amount' => $transaction->getAmount(),
                 'currency' => $transaction->getCurrency()
             ];
@@ -87,7 +87,7 @@ class AccountController extends AbstractController
         ];
     }
 
-    #[Route('/{id}/transfer-funds', methods: "GET")]
+    #[Route('/{id}/transfer-funds', methods: "POST")]
     public function transferFunds(TransactionsService $transferService, int $id, TransferFundsRequest $request)
     {
         if (!$fromAccount = $this->accountRepository->find($id)) {
