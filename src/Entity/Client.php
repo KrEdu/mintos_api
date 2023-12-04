@@ -21,7 +21,7 @@ class Client
     #[ORM\Column(length: 255)]
     private ?string $surname = null;
 
-    #[ORM\OneToMany(mappedBy: 'client_id', targetEntity: Account::class)]
+    #[ORM\OneToMany(mappedBy: 'client', targetEntity: Account::class)]
     private Collection $accounts;
 
 

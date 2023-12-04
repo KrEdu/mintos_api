@@ -18,7 +18,7 @@ class Account
 
     #[ORM\ManyToOne(inversedBy: 'yes')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?client $client = null;
+    private ?Client $client = null;
 
     #[ORM\Column(length: 255)]
     private ?string $name = null;
@@ -42,12 +42,12 @@ class Account
         return $this->id;
     }
 
-    public function getClientId(): ?client
+    public function getClientId(): ?Client
     {
         return $this->client;
     }
 
-    public function setClientId(?client $client): static
+    public function setClientId(?Client $client): static
     {
         $this->client = $client;
 
@@ -71,8 +71,14 @@ class Account
         return $this->balance;
     }
 
+    /**
+     * @throws \Exception
+     */
     public function setBalance(string $balance): static
     {
+        if ($balance < 0) {
+            throw new \Exception('Account balance cant be null');
+        }
         $this->balance = $balance;
 
         return $this;

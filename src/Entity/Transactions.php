@@ -31,6 +31,8 @@ class Transactions
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
+    #[ORM\Column(length: 10)]
+    private ?string $status = 'pending';
     public function getId(): ?int
     {
         return $this->id;
@@ -92,6 +94,18 @@ class Transactions
     public function setDate(\DateTimeInterface $date): static
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getStatus(): ?String
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): static
+    {
+        $this->status = $status;
 
         return $this;
     }
